@@ -11,6 +11,7 @@ import { parseRequest } from '@/lib/requestParser';
 import { getRequestStore } from '@/lib/requestStore';
 import { broadcastRequest, getSocket } from '@/lib/socket';
 import { CaptureRequestResponse, ApiErrorResponse } from '@/types/api';
+import { RequestMethod } from '@/types/requests';
 
 /**
  * Handle all HTTP methods for request capture
@@ -38,6 +39,7 @@ async function handleRequest(request: NextRequest, method: string) {
     const capturedRequest = store.addRequest({
       timestamp: Date.now(),
       ...rawRequestData,
+      method: method as RequestMethod,
     });
 
     console.log(

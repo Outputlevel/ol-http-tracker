@@ -34,8 +34,8 @@ export function Accordion({
   const [openItems, setOpenItems] = React.useState<Set<string>>(() => {
     const initialOpen = new Set<string>();
     React.Children.forEach(children, (child) => {
-      if (React.isValidElement(child) && child.props.defaultOpen) {
-        initialOpen.add(child.props.value);
+      if (React.isValidElement(child) && (child.props as any).defaultOpen) {
+        initialOpen.add((child.props as any).value);
       }
     });
     return initialOpen;
